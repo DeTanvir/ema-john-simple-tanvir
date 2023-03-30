@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Product from '../../Product/Product';
+import { addToDb, getShoppingCart } from '../../utilities/fakedb';
 import Cart from '../Cart/Cart';
 import './Shop.css';
 
@@ -11,10 +12,24 @@ const Shop = () => {
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [])
+    useEffect( () => {
+        const storedCart = getShoppingCart();
+        // console.log(storedCart)
+
+        // step 1: getting id from 'storedCart'(localStorage data/object)
+        for(const id in storedCart){
+            // step 2: getting product details by id using find
+            const savedProduct = products.find(product => product.id === id);
+            // console.log(savedProduct);
+        }
+
+    }, [products])
 
     const handleAddToCart = (product) => {
         const newCart = [...cart, product];
         setCart(newCart);
+        // console.log(newCart)
+        addToDb(product.id);
     }
     return (
         <div className='shop-container'>
