@@ -5,6 +5,11 @@
   text-align: center;
 }
 
+.App{
+  max-width: 1440px;
+  margin: auto;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
